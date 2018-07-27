@@ -1,0 +1,25 @@
+<div class="blog-header">
+	<div class="container">
+		<h1 class="blog-title">main template</h1>
+		<p class="lead blog-description">An example blog template built with Bootstrap.</p>
+	</div>
+</div>
+<div class="container">
+	<div class="form-check">
+		<input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="checkA">
+		<label class="form-check-label" for="exampleCheck1">Check A</label>
+	</div>
+	<div class="form-check">
+		<input type="checkbox" class="form-check-input" id="exampleCheck2"  [(ngModel)]="checkB">
+		<label class="form-check-label" for="exampleCheck2">Check B</label>
+	</div>
+	<div class="form-check" (click)="test('A'); click(checkC)">
+		<input type="checkbox" class="form-check-input" id="exampleCheck3" [(ngModel)]="checkC" (click)="test('B')">
+		<label class="form-check-label" for="exampleCheck3" (click)="$event.preventDefault(); $event.stopPropagation(); test('C'); click(checkC)">Check C</label>
+	</div>
+	{{checkA}}
+	{{checkB}}
+	{{checkC}}
+</div>
+
+

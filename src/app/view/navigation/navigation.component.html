@@ -1,0 +1,11 @@
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="nav">
+            <a class="nav-link" routerLink="/home" [class.active]="urlPath==='/home'" (click)="urlPath='/home'">HOME</a>
+            <a class="nav-link" routerLink="/h2" [class.active]="urlPath==='/h2'" (click)="urlPath='/h2'">H2</a>
+            <!--<a class="nav-link" routerLink="/jpa" [class.active]="urlPath==='/jpa'" (click)="urlPath='/jpa'">JPA</a>-->
+            <a class="nav-link" routerLink="/postgresql" [class.active]="urlPath==='/postgresql'" (click)="urlPath='/postgresql'">POSTGRESQL</a>
+            <a class="nav-link" routerLink="/form" [class.active]="urlPath==='/form'" (click)="urlPath='/form'">Form</a>
+        </nav>
+    </div>
+</div>

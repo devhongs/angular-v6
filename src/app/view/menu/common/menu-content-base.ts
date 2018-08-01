@@ -1,17 +1,22 @@
 import { AfterContentInit, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 import { Util } from '../../../../sdk/utils/utils';
+import {Subscription} from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
 
 export class MenuContentBase implements OnInit, AfterContentInit, OnDestroy {
 
-    constructor() {
+    private _subscription: Subscription;
+    router: Router;
 
+    constructor() {
+        this.router = Util.Injector.getService(Router);
     }
 
     initComponent() {}
 
     ngOnInit() {
-        // console.log('MenuContentBase :: ngOnInit');
+        this._listenRouteEvent();
     }
 
     ngAfterContentInit() {
@@ -19,6 +24,37 @@ export class MenuContentBase implements OnInit, AfterContentInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        // console.log('MenuContentBase :: ngOnDestroy');
+        if (this._subscription) {
+            this._subscription.unsubscribe();
+        }
+    }
+
+    canDeactivate(): boolean {
+        return this.checkRouting();
+    }
+
+    checkRouting(): boolean {
+        return true;
+    }
+
+
+
+    _listenRouteEvent() {
+        this._subscription = this.router.events.subscribe((event: any) => {
+            if (event instanceof NavigationStart) {
+                console.log('MenuContentBase :: NavigationStart');
+                // if (confirm('Go?')) {
+                //     console.log('ok o kok ok');
+                // } else {
+                //     console.log(this.router);
+                //     console.log(event);
+                // }
+            }
+            // NavigationStart
+            // NavigationEnd
+            // NavigationCancel
+            // NavigationError
+            // RoutesRecognized
+        });
     }
 }

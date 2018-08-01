@@ -60,7 +60,8 @@ export class DataUtil {
      * @param source
      */
     static mergeDeep(target: any, source: any): any {
-        return $.extend(true, target, source);
+        // return $.extend(true, target, source);
+        return Object.assign(target, source);
     }
 
     static getValueFromJson(name: string, json: any): any {

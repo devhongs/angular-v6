@@ -5,16 +5,18 @@ import { JpaComponent } from '../../view/menu/jpa/jpa.component';
 import { PostgresqlComponent } from '../../view/menu/postgresql/postgresql.component';
 import { NgModule } from '@angular/core';
 import { FormDemoComponent } from '../../view/menu/form/form-demo.component';
+import {CanDeactivateGuardService} from './can-deactivate-guard.service';
+import {PlayComponent} from '../../view/menu/play/play.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/form',
+        redirectTo: '/home',
         pathMatch: 'full',
     },
     {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
     },
     {
         path: 'h2',
@@ -33,6 +35,11 @@ export const routes: Routes = [
         component: FormDemoComponent
     },
     {
+        path: 'play',
+        component: PlayComponent,
+        canDeactivate: [CanDeactivateGuardService]
+    },
+    {
         path: ':any',
         redirectTo: '/home'
     },
@@ -40,6 +47,7 @@ export const routes: Routes = [
 
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],
-    exports: [ RouterModule ]
+    exports: [ RouterModule ],
+    providers: [ CanDeactivateGuardService ]
 })
 export class AppRoutingModule {}

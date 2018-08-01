@@ -17,7 +17,7 @@ export class H2Component extends MenuContentBase {
     }
 
     initComponent() {
-        this.getMemberList();
+        // this.getMemberList();
     }
 
     getMemberList() {

@@ -1,24 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestMethod, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
-import { map, catchError, toPromise } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 import { Util } from '../utils/utils';
 import { RestfulOptions, RestfulParamsOptions } from '../../type';
 import { InjectorUtil } from '../utils/injector.util';
 import { SessionStoreService } from './session-store.service';
-
-// rxjs
-// import 'rxjs/add/operator/first';
-// import 'rxjs/add/operator/take';
-// import 'rxjs/add/operator/buffer';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/switchMap';
-// import 'rxjs/add/operator/toPromise';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/debounceTime';
-// import 'rxjs/add/observable/throw';
-// import 'rxjs/add/observable/fromEvent';
 
 export interface IApiStubConfig {
     isStubs(): boolean;
@@ -32,13 +20,6 @@ export class RestfulModelService {
     private sessionStore: SessionStoreService;
     private _apiStubsConfig: IApiStubConfig;
 
-    constructor(
-        private http: Http
-    ) {
-        this._apiAddress = Util.Restful.getAPIAddress();
-        this.sessionStore = InjectorUtil.getService(SessionStoreService);
-    }
-
     set apiStubsConfig(value: IApiStubConfig) {
         this._apiStubsConfig = value;
     }
@@ -47,118 +28,87 @@ export class RestfulModelService {
         return this._apiStubsConfig;
     }
 
-    /**
-     * GET method
-     *
-     * 1) additional uri path
-     */
-    // GET({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulOptions) {
+    constructor(
+        private http: Http
+    ) {
+        this._apiAddress = Util.Restful.getAPIAddress();
+        this.sessionStore = InjectorUtil.getService(SessionStoreService);
+    }
+
     GET(option: RestfulOptions) {
         const opt = this._createOptions(option.params, {}, RequestMethod.Get);
         return this.http.get(this._createUrl(option), opt.options).pipe(
             map((response: any) => this._toJson(response)),
-            catchError(this._handleError),
-            toPromise()
-        )
-            .pipe(map((response: any) => this._toJson(response)))
-            .catch(this._handleError)
-            .toPromise();
-
-
-
-        return this.http.get(this._createUrl(option), opt.options)
-            .pipe(map((response: any) => this._toJson(response)))
-            .catch(this._handleError)
-            .toPromise();
+            catchError(this._handleError)
+        );
     }
 
-    aa() {
-        const obs: Observable = Observable.create(1);
-        obs.
-    }
-
-    // rxGET({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulOptions) {
-    rxGET(option: RestfulOptions) {
-        const opt = this._createOptions(option.params, {}, RequestMethod.Get);
-        return this.http.get(this._createUrl(option), opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError);
-    }
-
-    /**
-     * POST method
-     *
-     * 1) params json
-     * 2) additional uri path
-     * 3) optionalHeader info json
-     */
-    // POST({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulParamsOptions) {
     POST(option: RestfulParamsOptions) {
         const opt = this._createOptions(option.params, option.header, RequestMethod.Post);
-        return this.http.post(this._createUrl(option), opt.body, opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError)
-            .toPromise();
+        return this.http.post(this._createUrl(option), opt.body, opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError),
+        );
     }
 
-    // rxPOST({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulParamsOptions) {
+    PUT(option: RestfulParamsOptions) {
+        const opt = this._createOptions(option.params, option.header, RequestMethod.Put);
+        return this.http.put(this._createUrl(option), opt.body, opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError),
+        );
+    }
+
+    DELETE(option: RestfulOptions) {
+        const opt = this._createOptions(option.params, {}, RequestMethod.Delete);
+        return this.http.delete(this._createUrl(option), opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError),
+        );
+    }
+
+    rxGET(option: RestfulOptions) {
+        const opt = this._createOptions(option.params, {}, RequestMethod.Get);
+        return this.http.get(this._createUrl(option), opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError)
+        );
+    }
+
     rxPOST(option: RestfulParamsOptions) {
         const opt = this._createOptions(option.params, option.header, RequestMethod.Post);
-        return this.http.post(this._createUrl(option), opt.body, opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError);
+        return this.http.post(this._createUrl(option), opt.body, opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError)
+        );
     }
+
+    rxPUT(option: RestfulParamsOptions) {
+        const opt = this._createOptions(option.params, option.header, RequestMethod.Put);
+        return this.http.put(this._createUrl(option), opt.body, opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError)
+        );
+    }
+
+
+    rxDELETE(option: RestfulOptions) {
+        const opt = this._createOptions(option.params, {}, RequestMethod.Delete);
+        return this.http.delete(this._createUrl(option), opt.options).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError)
+        );
+    }
+
 
     /******************** */
     /* New Authority code */
     /******************** */
     rxPOSTLogin(url: string, body: any, header: any) {
-        return this.http.post(url, body, { headers: header })
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError);
-    }
-
-
-    /**
-     * PUT method
-     * return value just responsoe object, not JSON
-     */
-    // PUT({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulParamsOptions) {
-    PUT(option: RestfulParamsOptions) {
-        const opt = this._createOptions(option.params, option.header, RequestMethod.Put);
-        return this.http.put(this._createUrl(option), opt.body, opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError)
-            .toPromise();
-    }
-
-    // rxPUT({ uriPath, params, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulParamsOptions) {
-    rxPUT(option: RestfulParamsOptions) {
-        const opt = this._createOptions(option.params, option.header, RequestMethod.Put);
-        return this.http.put(this._createUrl(option), opt.body, opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError);
-    }
-
-    /**
-     * DELETE method
-     * return value just responsoe object, not JSON
-     */
-    // DELETE({ uriPath, params = {}, querystring = {}, header = {}, isRemoveServicePath = false }: RestfulOptions) {
-    DELETE(option: RestfulOptions) {
-        const opt = this._createOptions(option.params, {}, RequestMethod.Delete);
-        return this.http.delete(this._createUrl(option), opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError)
-            .toPromise();
-    }
-
-    // rxDELETE({ uriPath, params = {}, querystring = {}, header = {}, isRemoveServicePath = false }:RestfulOptions) {
-    rxDELETE(option: RestfulOptions) {
-        const opt = this._createOptions(option.params, {}, RequestMethod.Delete);
-        return this.http.delete(this._createUrl(option), opt.options)
-            .map((response: any) => this._toJson(response))
-            .catch(this._handleError);
+        return this.http.post(url, body, { headers: header }).pipe(
+            map((response: any) => this._toJson(response)),
+            catchError(this._handleError)
+        );
     }
 
     /**
@@ -167,7 +117,6 @@ export class RestfulModelService {
     private _createUrl(option: RestfulOptions | RestfulParamsOptions): string {
         let url: string = '';
         url += this._apiAddress;
-        // url += option.isRemoveServicePath ? '' : 'service/';
         url += option.uriPath;
         url += option.querystring ? Util.Restful.jsonToQueryString(option.querystring) : '';
         return url;

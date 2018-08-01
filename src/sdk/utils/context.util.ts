@@ -3,9 +3,10 @@ export class ContextUtil {
 	static getTarget(config: any): any {
         let target: any;
         if (config.event) {
-            target = $(config.event.target);
+            // target = $(config.event.target);
+            target = document.getElementsByClassName(config.event.target);
         } else if (config.target) {
-            target = $(config.target);
+            target = document.getElementsByClassName(config.target);
         }
         return target;
 	}
@@ -25,14 +26,15 @@ export class ContextUtil {
     }
     
     static isTickPosition(event: any): boolean {
+        const ticks = document.getElementsByClassName('qtip-tip');
         if (!event) return false;
-        if ($('.qtip-tip').length === 0) return false;
+        if (ticks.length === 0) return false;
         let gap = 20 ;
-        let tick = $('.qtip-tip');
+        let tick: any = ticks[0].children[0];
         let tickOffset = tick.offset();
         let eventPosition = ContextUtil.getEventPosition(event);
         let tickPosition = {
-            xMin: tickOffset.left - gap,
+            xMin: tick.of - gap,
             xMax: tickOffset.left + gap,
             yMin: tickOffset.top - gap,
             yMax: tickOffset.top + gap

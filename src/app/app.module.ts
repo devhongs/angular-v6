@@ -1,13 +1,12 @@
 import { ExcludePatternDirective } from './../sdk/directives/exclude-pattern.directive';
 import { maxSizeDirective } from './../sdk/directives/max-size.directive';
-import { PlayComponent } from './play/play.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './view/navigation/navigation.component';
+import { TopNavigationComponent } from './view/navigation/top/top-navigation.component';
 import { H2Component } from './view/menu/h2/h2.component';
 import { LoginComponent } from './view/login/login.component';
 import { MainComponent } from './view/main/main.component';
@@ -17,11 +16,15 @@ import { PostgresqlComponent } from './view/menu/postgresql/postgresql.component
 import { AppRoutingModule } from './portal/router/app-router.module';
 import { RestFulService } from '../sdk/service/restful.service';
 import { RestfulModelService } from '../sdk/service/restful-model.service';
-import { HttpModule } from '@angular/http';
 import { SessionStoreService } from '../sdk/service/session-store.service';
 import { FormDemoComponent } from './view/menu/form/form-demo.component';
 import { FormModule } from '../sdk/form/form.module';
-import { TextInput } from "../sdk/components/input/text-input";
+import { TextInput } from '../sdk/components/input/text-input';
+import {LeftNavigationComponent} from './view/navigation/left/left-navigation.component';
+import {BaseComponent} from '../sdk/core/base/base.component';
+import {HttpClientModule} from '@angular/common/http';
+import {PlayComponent} from './view/menu/play/play.component';
+import {TextEditorComponent} from './view/menu/play/text-editor/text-editor.component';
 
 @NgModule({
     imports: [
@@ -31,16 +34,16 @@ import { TextInput } from "../sdk/components/input/text-input";
         CommonModule,
         AppRoutingModule,
         // SDK
-        HttpModule,
+        HttpClientModule,
         // form,
         FormModule.forRoot()
     ],
     declarations: [
         // App
         AppComponent,
-        PlayComponent,
         // View
-        NavigationComponent,
+        TopNavigationComponent,
+        LeftNavigationComponent,
         LoginComponent,
         MainComponent,
         // Menu
@@ -49,11 +52,14 @@ import { TextInput } from "../sdk/components/input/text-input";
         JpaComponent,
         PostgresqlComponent,
         FormDemoComponent,
+        PlayComponent,
         // SDK > Directive
         maxSizeDirective,
         ExcludePatternDirective,
         //
         TextInput,
+        // test
+        TextEditorComponent
     ],
     // providers: [],
     providers: [

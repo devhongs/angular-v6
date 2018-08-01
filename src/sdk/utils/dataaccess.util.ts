@@ -1,7 +1,5 @@
 import { Http, RequestMethod, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/delay';
+import { Observable } from 'rxjs';
 
 export interface RequestConfig {
     url: string;
@@ -15,7 +13,7 @@ export interface RequestConfig {
 export class DataaccessUtil {
 
     static createUrl(url: string, query: any) {
-        url += query ? DataaccessUtil.jsonToQueryString(query) : '';
+        url += query ? DataaccessUtil.jsonToQueryString(query) : ''; 
         return url;
     }
 

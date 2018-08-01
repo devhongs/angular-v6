@@ -26,7 +26,6 @@ export class FormItem extends BaseComponent {
     _form: Form;
 
     @Input() label: string;
-    // @Input() form: MIForm;
     @Input() name: string;
     @Input() labelWidth: number;
     @Input() contentWidth: number;

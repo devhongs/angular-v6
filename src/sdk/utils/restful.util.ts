@@ -26,7 +26,7 @@ export class RestfulUtil {
      * API Address는 REStful API 호출을 위한 구분 주소 context
      * @see tools/env/config.json, tools/utils/template_local.ts
      */
-    static getAPIAddress() {
+    static getAPIAddress() { 
         if (CONFIG.PROJECT.MODE === 'DEV') {
             return CONFIG.REST.DEV.API_URL + CONFIG.REST.DEV.API_CONTEXT;
         } else if (CONFIG.PROJECT.MODE === 'PROD') {

@@ -1,12 +1,10 @@
-
-import { Injectable } from '@angular/core';
-import { RestFulService } from '../../../../sdk/service/restful.service';
-import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {RestFulService} from '../../../../sdk/service/restful.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class H2Service {
-    constructor(private restService: RestFulService, private http: Http) {
+    constructor(private restService: RestFulService) {
 
     }
 

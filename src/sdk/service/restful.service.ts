@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { RestfulModelService } from './restful-model.service';
 import { Util } from '../utils/utils';
 import { RestfulOptions, RestfulParamsOptions } from '../../type';
@@ -13,29 +13,29 @@ export class RestFulService {
     GET(options: RestfulOptions) {
         return this.RESTFUL.GET(options);
     }
-
-    rxGET(options: RestfulOptions): Observable<any> {
-        return this.RESTFUL.rxGET(options);
-    }
-
+    
     POST(options: RestfulParamsOptions) {
         return this.RESTFUL.POST(options);
-    }
-
-    rxPOST(options: RestfulParamsOptions): Observable<any> {
-        return this.RESTFUL.rxPOST(options);
     }
 
     PUT(options: RestfulParamsOptions) {
         return this.RESTFUL.PUT(options);
     }
 
-    rxPUT(options: RestfulParamsOptions): Observable<any> {
-        return this.RESTFUL.rxPUT(options);
-    }
-
     DELETE(options: RestfulOptions) {
         return this.RESTFUL.DELETE(options);
+    }
+
+    rxGET(options: RestfulOptions): Observable<any> {
+        return this.RESTFUL.rxGET(options);
+    }
+
+    rxPOST(options: RestfulParamsOptions): Observable<any> {
+        return this.RESTFUL.rxPOST(options);
+    }
+
+    rxPUT(options: RestfulParamsOptions): Observable<any> {
+        return this.RESTFUL.rxPUT(options);
     }
 
     rxDELETE(options: RestfulOptions): Observable<any> {

@@ -64,8 +64,7 @@ export class TextEditorComponent implements OnInit {
     }
 
     writeValue(value) {
-        console.log('writeValue', value);
-
+        // console.log('writeValue', value);
         if (value) {
             this._nxcModel = value;
         }

@@ -20,11 +20,11 @@ import { SessionStoreService } from '../sdk/service/session-store.service';
 import { FormDemoComponent } from './view/menu/form/form-demo.component';
 import { FormModule } from '../sdk/form/form.module';
 import { TextInput } from '../sdk/components/input/text-input';
-import {LeftNavigationComponent} from './view/navigation/left/left-navigation.component';
-import {BaseComponent} from '../sdk/core/base/base.component';
-import {HttpClientModule} from '@angular/common/http';
-import {PlayComponent} from './view/menu/play/play.component';
-import {TextEditorComponent} from './view/menu/play/text-editor/text-editor.component';
+import { LeftNavigationComponent } from './view/navigation/left/left-navigation.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PlayComponent } from './view/menu/play/play.component';
+import { TextEditorComponent } from './view/menu/play/text-editor/text-editor.component';
+import { BaseComponent } from "../sdk/core/base/base.component";
 
 @NgModule({
     imports: [

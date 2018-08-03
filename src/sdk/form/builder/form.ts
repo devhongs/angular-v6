@@ -51,8 +51,8 @@ export class Form extends BaseComponent {
     }
 
     init() {
-        console.log('formItems', this.formItems);
-        console.log('formComponents', this.formComponents, this.formComponents.length);
+        // console.log('formItems', this.formItems);
+        // console.log('formComponents', this.formComponents, this.formComponents.length);
         // this._children = Util.List.getChildren(this._children, this.formItems);
         this._children = Util.List.getChildren(this._children, this.formComponents);
         this._bindEvents();

@@ -8,7 +8,7 @@ import { Util } from '../sdk/utils/utils';
 })
 export class AppComponent {
     title = 'app';
-    constructor(private injector: Injector) {
+    constructor(private injector: Injector) { 
         // set global injector
         Util.Injector.getInstance().setInjector(injector);
     }

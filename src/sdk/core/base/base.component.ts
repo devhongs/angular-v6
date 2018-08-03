@@ -1,32 +1,17 @@
-import {
-   ComponentRef, Input,
-    OnChanges, OnDestroy, OnInit, AfterViewInit,
-    ViewContainerRef, Component,
-    ChangeDetectionStrategy, ViewEncapsulation
-} from '@angular/core';
+import { ComponentRef, Input, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BaseService } from './base.service';
 import { Util } from '../../utils/utils';
-
-/**
- * Base Component Life Cycle
- */
-export class BaseComponentLifeCycle {
-    create() {}
-    preinit() {}
-    init() {}
-    changes(changes: any): void { }
-    destroy() {}
-}
+import { LifeCycleBase } from './life-cycle-base';
 
 /**
  * UI Base Component
  */
-@Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
-})
-export class BaseComponent extends BaseComponentLifeCycle implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+// @Component({
+//     changeDetection: ChangeDetectionStrategy.OnPush,
+//     encapsulation: ViewEncapsulation.None
+// })
+export class BaseComponent extends LifeCycleBase {
 
     element: HTMLElement;
 
@@ -34,8 +19,8 @@ export class BaseComponent extends BaseComponentLifeCycle implements OnInit, Aft
     private __class__: string;
     private __width__: number;
     private __height__: number;
-    private __visible__: boolean = true;
-    private __disabled__: boolean = false;
+    private __visible__: boolean;
+    private __disabled__: boolean;
     private __cls__: string;
     private __service__: BaseService;
     private __subscriptions__: Subscription[] = [];
@@ -141,23 +126,10 @@ export class BaseComponent extends BaseComponentLifeCycle implements OnInit, Aft
             this.element = this._viewContainerRef.element.nativeElement;
         }
         // this.dom = Util.Dom;
-        this.create();
-    }
-
-    ngOnInit() {
         this.initUuid();
-        this.preinit();
     }
 
-    ngAfterViewInit() {
-        this.init();
-    }
-
-    ngOnChanges(changes: any) {
-        this.changes(changes);
-    }
-
-    ngOnDestroy() {
+    destroy() {
         if (this.__subscriptions__.length > 0) {
             this.__subscriptions__.forEach((sub: Subscription) => {
                 sub.unsubscribe();
@@ -172,7 +144,6 @@ export class BaseComponent extends BaseComponentLifeCycle implements OnInit, Aft
             });
             this.__cmps__ = [];
         }
-        this.destroy();
     }
 
     initUuid(type: string = 'p') {

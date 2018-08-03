@@ -4,9 +4,9 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class H2Service {
-    constructor(private restService: RestFulService) {
-
-    }
+    constructor(
+        private restService: RestFulService
+    ) {}
 
     getMemberList(): Observable<any> {
         return this.restService.rxGET({

@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {MenuContentBase} from '../common/menu-content-base';
-import {Observable} from 'rxjs/Observable';
+import { Component } from '@angular/core';
+import { MenuContentBase } from '../common/menu-content-base';
+import { Store } from '@ngrx/store';
+import { AddProduct } from '../../../store/actions';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-play',
@@ -8,16 +10,34 @@ import {Observable} from 'rxjs/Observable';
 })
 export class PlayComponent extends MenuContentBase {
     title = 'main';
-    model = {summary: ''};
-    sample = '';
+    count: number = 0;
 
-    checkRouting(): boolean {
-        return confirm('PlayComponent checkRouting?');
+    constructor(
+        private store: Store<any>
+    ) {
+        super();
     }
 
-    test(): Observable<boolean> | boolean {
-        console.log('test');
-        return confirm('go?');
+    initComponent() {
+        console.log(this.store);
+    }
+
+    add() {
+        const item = {count: this.count++};
+        const action = new AddProduct(item);
+        this.store.dispatch(action);
+        // this.store.dispatch(new AddProduct(product));
+    }
+
+    remove() {
+
+    }
+
+    test() {
+        const cart: Observable<Array<any>> = this.store.select('cart');
+        const cart2: Observable<Array<any>> = this.store.select('akdhawsoihdaweoidhj');
+        console.log(cart);
+        console.log(cart2);
     }
 
 }

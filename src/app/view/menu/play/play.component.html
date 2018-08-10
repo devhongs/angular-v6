@@ -9,17 +9,10 @@
 </div>
 <div>
     Contents...
-    <input [(ngModel)]="sample"/>
-    <p-form>
-        <p-text-input [(ngModel)]="sample"></p-text-input>
-    </p-form>
-    <nxc-text-editor [(ngModel)]="sample"></nxc-text-editor>
-    model.summary : {{model.summary}}
-    sample : {{sample}}
-
-    <!--<nxc-text-editor [tl]=128 [nxcModel]="model.summary"-->
-                     <!--(nxcPushEnter)="enterHandler()"-->
-                     <!--[placeholder]="'label.setting.distribution_setting_list.distribution_regist.summary' | translate">-->
-    <!--</nxc-text-editor>-->
+    <button (click)="test()">Test</button>
+    <button (click)="add()">Add</button>
+    <button (click)="remove()">Remove</button>
 </div>
+
+
 

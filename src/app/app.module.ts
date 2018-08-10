@@ -24,7 +24,8 @@ import { LeftNavigationComponent } from './view/navigation/left/left-navigation.
 import { HttpClientModule } from '@angular/common/http';
 import { PlayComponent } from './view/menu/play/play.component';
 import { TextEditorComponent } from './view/menu/play/text-editor/text-editor.component';
-import { BaseComponent } from "../sdk/core/base/base.component";
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/reducer';
 
 @NgModule({
     imports: [
@@ -33,10 +34,14 @@ import { BaseComponent } from "../sdk/core/base/base.component";
         FormsModule,
         CommonModule,
         AppRoutingModule,
+        StoreModule.forRoot({
+            cart: reducer
+        }),
         // SDK
         HttpClientModule,
         // form,
-        FormModule.forRoot()
+        FormModule.forRoot(),
+        // Redux
     ],
     declarations: [
         // App

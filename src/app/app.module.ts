@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlayComponent } from './view/menu/play/play.component';
 import { TextEditorComponent } from './view/menu/play/text-editor/text-editor.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducer';
+import { reducers } from './store/app-state';
 
 @NgModule({
     imports: [
@@ -34,14 +34,12 @@ import { reducer } from './store/reducer';
         FormsModule,
         CommonModule,
         AppRoutingModule,
-        StoreModule.forRoot({
-            cart: reducer
-        }),
         // SDK
         HttpClientModule,
         // form,
         FormModule.forRoot(),
         // Redux
+        StoreModule.forRoot(reducers, {}),
     ],
     declarations: [
         // App

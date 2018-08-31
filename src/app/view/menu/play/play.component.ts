@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { MenuContentBase } from '../common/menu-content-base';
-import { Store } from '@ngrx/store';
-import { AddProduct } from '../../../store/actions';
-import { Observable } from 'rxjs/Observable';
+import { createSelector, Store } from '@ngrx/store';
+import { User } from '../../../store/user/user.model';
+import { Login, Logout } from '../../../store/user/user.actions';
+import { AppState, selectUserState } from '../../../store/app-state';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-play',
@@ -13,7 +15,7 @@ export class PlayComponent extends MenuContentBase {
     count: number = 0;
 
     constructor(
-        private store: Store<any>
+        private store: Store<AppState>
     ) {
         super();
     }
@@ -22,22 +24,43 @@ export class PlayComponent extends MenuContentBase {
         console.log(this.store);
     }
 
-    add() {
-        const item = {count: this.count++};
-        const action = new AddProduct(item);
+    login() {
+        const item: User = {
+            id: 'red',
+            password: 'q12345',
+            email: 'red@google.com',
+            token: '00000',
+        };
+        const action = new Login(item);
         this.store.dispatch(action);
-        // this.store.dispatch(new AddProduct(product));
     }
 
-    remove() {
+    logout() {
+        const action = new Logout();
+        this.store.dispatch(action);
+    }
 
+    modify() {
+        const item = {
+            email: '',
+            token: '',
+        };
+        const action = new Login(item);
+        this.store.dispatch(action);
     }
 
     test() {
-        const cart: Observable<Array<any>> = this.store.select('cart');
-        const cart2: Observable<Array<any>> = this.store.select('akdhawsoihdaweoidhj');
-        console.log(cart);
-        console.log(cart2);
+        const user: Observable<any> = this.store.select(selectUserState);
+        console.log(user);
+    }
+
+    getState() {
+        // @see https://github.com/ngrx/store/blob/master/README.md
+        // return this.store.getState(); <- depericated
+        // let state: AppState;
+        // this.store.take(1).subscribe(s => state = s);
+        // return state;
+        // createSelector(this.store, fromTest.getData)
     }
 
 }

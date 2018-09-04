@@ -46,7 +46,7 @@ export class FormComponentChild extends BaseComponent {
     @Output() change: EventEmitter <any> = new EventEmitter();
 
     constructor(protected _container: ViewContainerRef) {
-        super(_container);
+        super();
     }
 
     initConfig(type: FormComponentChildType) {

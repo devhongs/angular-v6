@@ -96,7 +96,7 @@ export class FormComponent extends BaseComponent implements ControlValueAccessor
     @Output() keyUp: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(protected _container: ViewContainerRef) {
-        super(_container);
+        super();
     }
 
     validate(): boolean {

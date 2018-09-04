@@ -47,7 +47,7 @@ export class Form extends BaseComponent {
     // @ContentChild(FormComponent) formComponents: FormComponent;
 
     constructor(protected _container: ViewContainerRef, private builder: FormBuilder) {
-        super(_container);
+        super();
     }
 
     init() {

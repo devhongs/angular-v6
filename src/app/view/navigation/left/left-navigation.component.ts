@@ -25,7 +25,7 @@ const MENU_LIST = [
     {name: 'Home', path: '/home'},
     {name: 'H2', path: '/h2'},
     {name: 'Jpa', path: '/jpa'},
-    {name: 'PostgreSql', path: '/postgreSql'},
+    {name: 'PostgreSql', path: '/postgresql'},
     {name: 'Form', path: '/form'},
     {name: 'Play', path: '/play'},
 ];

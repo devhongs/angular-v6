@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MenuContentBase } from '../common/menu-content-base';
 import { FormDemoService } from './form-demo.service';
-import { FormValueChangeType } from "../../../../sdk/form/common/form.type";
-import { Form } from "../../../../sdk/form/builder/form";
+import { FormValueChangeType } from '../../../../sdk/form/common/form.type';
+import { Form } from '../../../../sdk/form/builder/form';
 
 @Component({
     selector: 'form-demo',

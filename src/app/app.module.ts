@@ -24,8 +24,7 @@ import { LeftNavigationComponent } from './view/navigation/left/left-navigation.
 import { HttpClientModule } from '@angular/common/http';
 import { PlayComponent } from './view/menu/play/play.component';
 import { TextEditorComponent } from './view/menu/play/text-editor/text-editor.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './store/app-state';
+import { AppStoreModule } from './store/app-store.module';
 
 @NgModule({
     imports: [
@@ -39,7 +38,7 @@ import { reducers } from './store/app-state';
         // form,
         FormModule.forRoot(),
         // Redux
-        StoreModule.forRoot(reducers, {}),
+        AppStoreModule,
     ],
     declarations: [
         // App

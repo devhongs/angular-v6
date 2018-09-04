@@ -53,7 +53,7 @@ export class FormItem extends BaseComponent {
     }
 
     constructor(protected _container: ViewContainerRef) {
-        super(_container);
+        super();
     }
 
     init() {

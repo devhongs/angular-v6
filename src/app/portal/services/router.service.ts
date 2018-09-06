@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class AppRouterService {
+export class RouterService {
 
     constructor(
         private router: Router
@@ -13,6 +13,6 @@ export class AppRouterService {
     }
 
     goMain() {
-        this.router.navigateByUrl('main');
+        this.router.navigateByUrl('home');
     }
 }

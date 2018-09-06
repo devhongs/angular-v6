@@ -1,23 +1,18 @@
-
-<!--<nav class="site-header sticky-top py-1">-->
-    <!--<div class="container d-flex flex-column flex-md-row justify-content-between">-->
-        <!--<a class="py-2" href="#">-->
-            <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>-->
-        <!--</a>-->
-        <!--<a class="py-2 d-none d-md-inline-block" routerLink="/home" [class.active]="urlPath==='/home'" (click)="urlPath='/home'">HOME</a>-->
-        <!--<a class="py-2 d-none d-md-inline-block" routerLink="/h2" [class.active]="urlPath==='/h2'" (click)="urlPath='/h2'">H2</a>-->
-        <!--<a class="py-2 d-none d-md-inline-block" routerLink="/jpa" [class.active]="urlPath==='/jpa'" (click)="urlPath='/jpa'">JPA</a>-->
-        <!--<a class="py-2 d-none d-md-inline-block" routerLink="/postgresql" [class.active]="urlPath==='/postgresql'" (click)="urlPath='/postgresql'">POSTGRESQL</a>-->
-        <!--<a class="py-2 d-none d-md-inline-block" routerLink="/form" [class.active]="urlPath==='/form'" (click)="urlPath='/form'">Form</a>-->
-    <!--</div>-->
-<!--</nav>-->
-
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap" (click)="signOut()">
-            <a class="nav-link">Sign Out</a>
-        </li>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent; border: none; box-shadow: none;">
+                {{user?.id}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" style="position: absolute">
+                <button class="dropdown-item" type="button">User Info</button>
+                <button class="dropdown-item" type="button" (click)="signOut()">Sing Out</button>
+            </div>
+        </div>
+        <!--<li class="nav-item text-nowrap" (click)="signOut()" style="cursor:pointer">-->
+            <!--<a class="nav-link">Sign Out</a>-->
+        <!--</li>-->
     </ul>
 </nav>

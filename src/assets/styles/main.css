@@ -186,7 +186,6 @@ html {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
     height: 100vh;
 }
 
@@ -332,8 +331,8 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
@@ -379,9 +378,9 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     -moz-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+    -webkit-animation-duration:0.5s;
+    -moz-animation-duration:0.5s;
+    animation-duration:0.5s;
 }
 
 .fadeIn.first {
@@ -403,9 +402,9 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 }
 
 .fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    animation-delay: 0.5s;
 }
 
 /* Simple CSS3 Fade-in Animation */

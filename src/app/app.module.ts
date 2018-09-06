@@ -13,7 +13,6 @@ import { MainComponent } from './view/main/main.component';
 import { HomeComponent } from './view/menu/home/home.component';
 import { JpaComponent } from './view/menu/jpa/jpa.component';
 import { PostgresqlComponent } from './view/menu/postgresql/postgresql.component';
-import { AppRoutingModule } from './portal/router/app-router.module';
 import { RestFulService } from '../sdk/service/restful.service';
 import { RestfulModelService } from '../sdk/service/restful-model.service';
 import { SessionStoreService } from '../sdk/service/session-store.service';
@@ -25,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlayComponent } from './view/menu/play/play.component';
 import { TextEditorComponent } from './view/menu/play/text-editor/text-editor.component';
 import { AppStoreModule } from './store/app-store.module';
+import { PortalModule } from './portal/portal.module';
 
 @NgModule({
     imports: [
@@ -32,10 +32,11 @@ import { AppStoreModule } from './store/app-store.module';
         BrowserAnimationsModule,
         FormsModule,
         CommonModule,
-        AppRoutingModule,
+        // Protal
+        PortalModule,
         // SDK
         HttpClientModule,
-        // form,
+        // Form,
         FormModule.forRoot(),
         // Redux
         AppStoreModule,

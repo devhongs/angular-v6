@@ -1,18 +1,21 @@
 import { createFeatureSelector } from '@ngrx/store';
 
-import * as user from './user/user.reducers';
+import * as auth from './auth/auth.reducers';
+import { Auth } from '../portal/models/auth.model';
 
 export interface AppState {
-    userState: user.State;
-}
-
-export const reducers = {
-    user: user.reducer
+    authState: Auth;
+    // authState: auth.State;
 };
 
-export const stateType = {
+export const reducers = {
+    auth: auth.reducer
+};
+
+export const AppStateType = {
     user: 'user',
     auth: 'auth',
-}
+};
 
-export const selectUserState = createFeatureSelector<AppState>(stateType.user);
+export const selectAuthState = createFeatureSelector<AppState>(AppStateType.auth);
+export const selectUserState = createFeatureSelector<AppState>(AppStateType.user);

@@ -4,8 +4,7 @@ import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angul
 import {MenuContentBase} from '../../view/menu/common/menu-content-base';
 
 @Injectable()
-export class CanDeactivateGuardService implements CanDeactivate<MenuContentBase> {
-
+export class MenuDeactivateGuardService implements CanDeactivate<MenuContentBase> {
     canDeactivate(
         component: MenuContentBase,
         route: ActivatedRouteSnapshot,
@@ -15,15 +14,6 @@ export class CanDeactivateGuardService implements CanDeactivate<MenuContentBase>
         console.log(route.paramMap.get('id'));
         // Get the current URL
         console.log(state.url);
-
         return component.canDeactivate();
-        // return component.canDeactivate();
-        // // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-        // if (!component.crisis || component.crisis.name === component.editName) {
-        //     return true;
-        // }
-        // // Otherwise ask the user with the dialog service and return its
-        // // observable which resolves to true or false when the user decides
-        // return component.dialogService.confirm('Discard changes?');
     }
 }

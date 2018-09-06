@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { AppState, selectUserState, stateType } from './app-state';
+import { AppState, selectUserState, AppStateType, selectAuthState } from './app-state';
 import { Observable } from 'rxjs';
 import { MemoizedSelector } from '@ngrx/store/src/selector';
 
@@ -27,8 +27,17 @@ export class AppStoreService {
 
     getSelector(name: string): MemoizedSelector<object, any> {
         switch (name) {
-            case stateType.user: return selectUserState;
+            case AppStateType.auth: return selectAuthState;
+            case AppStateType.user: return selectUserState;
             default: return selectUserState;
         }
     }
+
+    // selectAuth(name: string): Observable<any> {
+    //     return this.store.select(selectAuthState);
+    // }
+    //
+    // selectAuth(name: string): Observable<any> {
+    //     return this.store.select(selectAuthState);
+    // }
 }

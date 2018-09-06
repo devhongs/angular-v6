@@ -20,7 +20,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
     checkPermission(): boolean {
         // TODO :: check jwt token
-        if (!localStorage.getItem('token')) {
+        const token = localStorage.getItem('token');
+        console.log(token)
+        if (token === null || token === undefined || token === 'undefined') {
             this.appRouter.goLogin();
             return false;
         }

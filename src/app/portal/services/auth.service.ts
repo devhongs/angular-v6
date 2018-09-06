@@ -11,6 +11,7 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     setToken(token: string) {
+        console.log('setToken', token)
         localStorage.setItem('token', token);
     }
 

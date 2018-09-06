@@ -40,11 +40,11 @@ export class AuthEffects {
     @Effect({ dispatch: false })
     LogInSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_SUCCESS),
-        tap((user: User) => {
-            this.authService.setToken(user.token);
+        tap(action => {
+            this.authService.setToken(action.payload.token);
             this.routerService.goMain();
         })
-    );
+    ); 
 
     @Effect({ dispatch: false })
     LogInFailure: Observable<any> = this.actions.pipe(

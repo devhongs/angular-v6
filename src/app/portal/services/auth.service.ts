@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user.model';
 
-
 @Injectable()
 export class AuthService {
     private BASE_URL = 'http://localhost:1337';
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient
+    ) {}
 
     setToken(token: string) {
         console.log('setToken', token)

@@ -44,7 +44,7 @@ export class AuthEffects {
             this.authService.setToken(action.payload.token);
             this.routerService.goMain();
         })
-    ); 
+    );
 
     @Effect({ dispatch: false })
     LogInFailure: Observable<any> = this.actions.pipe(

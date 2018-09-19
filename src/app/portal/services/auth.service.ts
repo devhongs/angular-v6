@@ -12,12 +12,18 @@ export class AuthService {
     ) {}
 
     setToken(token: string) {
-        console.log('setToken', token)
+        console.log('setToken', token);
         localStorage.setItem('token', token);
     }
 
     getToken(): string {
         return localStorage.getItem('token');
+    }
+
+    getUserInfo(): User {
+        const token = this.getToken();
+        const user = JSON.parse(token);
+        return user;
     }
 
     removeToken() {
@@ -27,7 +33,7 @@ export class AuthService {
     logIn(id: string, password: string): Observable<User> {
         const user: User = {
             id: id,
-            password:password,
+            password: password,
             email: 'red@google.com',
             token: 'tokenstringvalue',
         };

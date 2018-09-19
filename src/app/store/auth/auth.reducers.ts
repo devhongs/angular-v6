@@ -1,6 +1,5 @@
 import { AuthActions, AuthActionTypes } from './auth.actions';
 import { User } from '../../portal/models/user.model';
-import { Auth } from '../../portal/models/auth.model';
 
 export interface State {
     isAuthenticated: boolean;

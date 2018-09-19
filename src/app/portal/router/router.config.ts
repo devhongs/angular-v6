@@ -45,6 +45,11 @@ export const routeConfig: Routes = [
                 component: PlayComponent,
             },
             {
+                path: '',
+                redirectTo: '/home',
+                pathMatch: 'full'
+            },
+            {
                 path: ':any',
                 redirectTo: '/home'
             },

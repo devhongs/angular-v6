@@ -7,7 +7,7 @@ import { User } from '../../portal/models/user.model';
 
 @Component({
     selector: 'app-login',
-  templateUrl: './login.component.html'
+    templateUrl: './login.component.html'
 })
 export class LoginComponent extends BaseComponent {
 

@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState, AppStateType } from '../../../store/app-state';
 import { User } from '../../../portal/models/user.model';
 import { AppStoreService } from '../../../store/app-store.service';
+import { AuthService } from '../../../portal/services/auth.service';
 
 @Component({
     selector: 'top-navigation',
@@ -16,15 +17,17 @@ export class TopNavigationComponent extends NavigationBase {
 
     constructor(
         private store: Store<AppState>,
-        private appStoreService: AppStoreService
+        private appStoreService: AppStoreService,
+        private authService: AuthService,
     ) {
         super();
     }
 
     preInit() {
-        const auth = this.appStoreService.select(AppStateType.auth);
-        this.user = auth.user;
-        console.log(this.user);
+        // const auth = this.appStoreService.select(AppStateType.auth);
+        // this.user = auth.user;
+        this.user = this.authService.getUserInfo();
+        // console.log(this.user);
     }
 
     signOut() {

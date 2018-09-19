@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot } from '@angular/router';
 import { RouterService } from './router.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild {
     constructor(
-        private appRouter: RouterService
+        private routerService: RouterService,
+        private authService: AuthService,
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -20,10 +22,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
     checkPermission(): boolean {
         // TODO :: check jwt token
-        const token = localStorage.getItem('token');
-        console.log(token);
-        if (token === null || token === undefined || token === 'undefined') {
-            this.appRouter.goLogin();
+        const user = this.authService.getUserInfo();
+        if (user === null || user === undefined) {
+            this.routerService.goLogin();
             return false;
         }
         return true;

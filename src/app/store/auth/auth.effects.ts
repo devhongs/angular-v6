@@ -41,7 +41,9 @@ export class AuthEffects {
     LogInSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_SUCCESS),
         tap(action => {
-            this.authService.setToken(action.payload.token);
+            // TODO : token 정보를 넘겨야 되는데 user 정보를 넘기고 있음
+            const token = JSON.stringify(action.payload);
+            this.authService.setToken(token);
             this.routerService.goMain();
         })
     );

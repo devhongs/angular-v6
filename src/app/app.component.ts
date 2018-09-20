@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { Util } from '../sdk/utils/utils';
+import { Util } from './sdk/utils/utils';
 
 @Component({
     selector: 'app-root',

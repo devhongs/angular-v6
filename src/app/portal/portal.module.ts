@@ -10,9 +10,11 @@ import { PostgresqlComponent } from './view/menu/postgresql/postgresql.component
 import { PlayComponent } from './view/menu/play/play.component';
 import { AppCommonModule } from '../common/common.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { SdkModule } from '../sdk/sdk.module';
+import { PortalComponent } from './portal.component';
 
 @NgModule({
     imports: [
@@ -21,10 +23,13 @@ import { CommonModule } from '@angular/common';
         BrowserAnimationsModule,
         FormsModule,
         CommonModule,
-        //
-        AppCommonModule
+        // App
+        AppCommonModule,
+        SdkModule,
     ],
     declarations: [
+        // Portal
+        PortalComponent,
         // Login
         LoginComponent,
         // Nav
@@ -40,19 +45,7 @@ import { CommonModule } from '@angular/common';
         PlayComponent,
     ],
     exports: [
-        // Login
-        LoginComponent,
-        // Nav
-        TopNavigationComponent,
-        LeftNavigationComponent,
-        // Main
-        MainComponent,
-        // Menu
-        HomeComponent,
-        H2Component,
-        JpaComponent,
-        PostgresqlComponent,
-        PlayComponent,
+        PortalComponent
     ],
     providers: []
 })

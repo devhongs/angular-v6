@@ -13,7 +13,7 @@ export class DateUtil {
 	 * [@param] {String} type         interval type
 	 * [@param] {String} type         format type
 	 */
-	static getFrom(period: number, date: number = Date.now(), type: string = 'day', format: string = 'YYYY-MM-DD'): number {
+	static getFrom(date: number = Date.now(), period: number, type: string = 'day', format: string = 'YYYY-MM-DD'): number {
 		return +moment(moment(date).add(-period, type).format(format)).format('x');
 		// return +moment(moment(date.toString()).add(-period, type).format(format)).format('x');
 	}
@@ -36,19 +36,6 @@ export class DateUtil {
 	static fromNow(): string {
 		return moment().fromNow();
 	}
-
-    /**
-     * Timeline Form에서 사용
-     */
-    static getTimeline(date: number = Date.now()) :any {
-        return {
-            hour: {from: DateUtil.getFrom(24, date, 'hour'), to: date},
-            shift: {from: DateUtil.getFrom(15, date, 'day'), to: date},
-            day: {from: DateUtil.getFrom(30, date, 'day'), to: date},
-            week: {from: DateUtil.getFrom(15, date, 'week'), to: date},
-            month: {from: DateUtil.getFrom(12, date, 'month'), to: date}
-        }
-    }
 
 	/**
 	 * returns cron expression to timestamp

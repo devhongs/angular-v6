@@ -6,6 +6,8 @@ import { MenuDeactivateGuardService } from './services/menu-deactivate-guard.ser
 import { AuthService } from './services/auth.service';
 import { routeConfig } from './router/router.config';
 import { AppStoreModule } from './store/app-store.module';
+import { CookieService } from 'ngx-cookie-service';
+import { CookiesService } from './services/cookies.service';
 
 @NgModule({
     imports: [
@@ -19,7 +21,9 @@ import { AppStoreModule } from './store/app-store.module';
         RouterService,
         AuthGuardService,
         MenuDeactivateGuardService,
-        AuthService
+        AuthService,
+        CookieService,
+        CookiesService
     ]
 })
 export class AppCommonModule {}

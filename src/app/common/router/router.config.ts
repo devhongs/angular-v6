@@ -3,10 +3,9 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { LoginComponent } from '../../portal/view/login/login.component';
 import { MainComponent } from '../../portal/view/main/main.component';
 import { HomeComponent } from '../../portal/view/menu/home/home.component';
-import { H2Component } from '../../portal/view/menu/h2/h2.component';
-import { JpaComponent } from '../../portal/view/menu/jpa/jpa.component';
-import { PostgresqlComponent } from '../../portal/view/menu/postgresql/postgresql.component';
 import { PlayComponent } from '../../portal/view/menu/play/play.component';
+import { ComponentsComponent } from '../../portal/view/menu/components/components.component';
+import { FormsComponent } from '../../portal/view/menu/forms/forms.component';
 
 export const routeConfig: Routes = [
     {
@@ -24,16 +23,13 @@ export const routeConfig: Routes = [
                 component: HomeComponent,
             },
             {
-                path: 'h2',
-                component: H2Component,
+                path: 'components',
+                component: ComponentsComponent,
+                data: {title: 'components title'}
             },
             {
-                path: 'jpa',
-                component: JpaComponent
-            },
-            {
-                path: 'postgresql',
-                component: PostgresqlComponent
+                path: 'forms',
+                component: FormsComponent
             },
             {
                 path: 'play',
@@ -41,12 +37,12 @@ export const routeConfig: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/home',
+                redirectTo: 'home',
                 pathMatch: 'full'
             },
             {
                 path: ':any',
-                redirectTo: '/home'
+                redirectTo: 'home'
             },
         ]
     },

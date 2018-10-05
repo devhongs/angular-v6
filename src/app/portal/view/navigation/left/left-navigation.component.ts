@@ -22,9 +22,8 @@ export class LeftNavigationComponent extends NavigationBase {
 }
 
 const MENU_LIST = [
-    {name: 'Home', path: '/home'},
-    {name: 'H2', path: '/h2'},
-    {name: 'Jpa', path: '/jpa'},
-    {name: 'PostgreSql', path: '/postgresql'},
-    {name: 'Play', path: '/play'},
+    {name: 'Home', path: '/home', desc: 'home description'},
+    {name: 'Forms', path: '/forms', desc: 'forms description'},
+    {name: 'Components', path: '/components', desc: 'components description'},
+    {name: 'Play', path: '/play', desc: 'play description'},
 ];
